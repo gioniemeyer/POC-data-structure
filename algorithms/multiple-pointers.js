@@ -15,41 +15,18 @@ Bonus
 You must do this with constant or O(1) space and O(n) time.
 */
 
-function countUniqueValues_On(arr) {
-    let counter = 0;
-    if (!arr.length) return console.log(0);
-
-    let pointer = arr[0];
-    for(let i = 1; i < arr.length + 1; i++) {
-        if(arr[i] === pointer) {
-            pointer = arr[i]
-        } else {
-            counter ++
-            pointer = arr[i]
-        }
-    }
-    return console.log(counter);    
-};
-
-// O(1)
 function countUniqueValues(arr) {
-    let counter = 0;
     if (!arr.length) return console.log(0);
-    if (arr.length === 1) return console.log(1);
+    
+    let pointer = 0;
+    for(let i = 1; i < arr.length + 1; i++) {
 
-    let pointer1 = arr[0];
+        if(arr[i] !== arr[pointer]) pointer ++
 
-    for(let i = 0; i < arr.length; i++) {
-        let pointer2 = arr[i + 1];
-        if(pointer1 === pointer2) {
-            pointer1 = pointer2;
-        } else {
-            counter ++
-            pointer1 = pointer2
-        }
+        arr[pointer] = arr[i]
     }
-    return console.log(counter);
-}
+    return console.log(pointer);    
+};
 
 countUniqueValues([ 1 , 1 , 1 , 1 , 1 , 2]) // 2
 countUniqueValues([1 , 2 , 3 , 4 , 4 , 4 , 7 , 7 , 12 , 12 , 13]) // 7
